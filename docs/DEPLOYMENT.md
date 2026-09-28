@@ -60,7 +60,8 @@ Compose и использует собственную временную SQLite
 
 Без `outputs/rows.json` backend стартует с DB и допускает загрузку своих
 объектов через `/gallery`. Конкурсные готовые примеры тогда недоступны.
-Подготовленный импорт требует не только embeddings: проверяются
+Если инференс сохранён в `outputs/new_run`, перед запуском задайте
+`export FALCON_OUTPUT=/results/new_run`. Подготовленный импорт требует не только embeddings: проверяются
 `model_manifest.json`, `rows.json`, `pooling_weights.npy`, `redactions.json`
 и их связи с `report.json`. Нельзя копировать новый manifest к старым векторам.
 
