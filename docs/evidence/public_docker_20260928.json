@@ -1,0 +1,97 @@
+{
+  "evidence_level": "VERIFIED-LOCAL",
+  "date": "2026-09-28",
+  "source_commit": "1bf26a1b1ac0ac364a0cdaa06e2a54d5d25343c3",
+  "source_archive_sha256": "59c13f289235c5c0088598fa06c3d89acfca439297166271ef204c80e5b4d102",
+  "image_id": "sha256:c1f05aa5335ee86c5710b150f1bcc3c58687aae531ae9c97066f1cbebf8d7d10",
+  "image_bytes": 1626068124,
+  "image_user": "1000:1000",
+  "build_seconds": 0.8289584210142493,
+  "dependency_install_steps_cached": true,
+  "context_file_permissions": "0644 regular files, 0755 executable files from git tree and directories",
+  "public_project_files": 61,
+  "embedded_file_set_exact": true,
+  "source_bind": false,
+  "module_paths": [
+    "/app/inference.py",
+    "/app/api.py",
+    "/app/explanation.py"
+  ],
+  "private_source_layers_absent": true,
+  "smoke_isolation": {
+    "cpu_limit": 2.0,
+    "memory_limit": 6442450944,
+    "network": "none",
+    "rootfs_readonly": true,
+    "ports": {},
+    "devices": null,
+    "cap_drop": [
+      "ALL"
+    ],
+    "security_opt": [
+      "no-new-privileges"
+    ],
+    "mounts": [
+      {
+        "destination": "/receipts",
+        "rw": true
+      },
+      {
+        "destination": "/provided_weights",
+        "rw": false
+      }
+    ]
+  },
+  "smoke": {
+    "seed": 20260928,
+    "synthetic_only": true,
+    "uses_organizer_data": false,
+    "uses_saved_outputs": false,
+    "quality_claim": false,
+    "empty_start": true,
+    "examples_empty": true,
+    "missing_example_404": true,
+    "encode_dimension": 1024,
+    "encode_norm": 1.0000000381301986,
+    "empty_search_refused": true,
+    "gallery_insert_count": 2,
+    "selfsearch_top1": true,
+    "selfsearch_score": 1.0000001192092896,
+    "explanation_regions": 16,
+    "explanation_variants": 32,
+    "provenance_matches_search": true,
+    "search_reference": {
+      "embedding_max_abs_error": 3.539540735092439e-07,
+      "full_gallery_score_max_abs_error": 8.108067861556378e-08,
+      "embedding_score_self_consistency_max_abs_error": 8.107909188481699e-08,
+      "target_score_abs_error": 8.108067839351918e-08,
+      "winner_id_agrees": true,
+      "competitor_id_agrees": true,
+      "tolerance": 0.0001
+    },
+    "negative_controls": {
+      "unknown_token_409": true,
+      "changed_input_409": true,
+      "changed_gallery_409": true
+    },
+    "api_restart_retains_gallery": true,
+    "api_restart_retains_ranking": true,
+    "passed": true,
+    "seconds": 16.49819734087214,
+    "api_bind": "127.0.0.1",
+    "database_bind": "127.0.0.1",
+    "existing_services_contacted": false,
+    "script_sha256": "a4441b76deef4f04a2410256fd4af86b99ba8b3460e1b101200b4af2bb7f6595",
+    "weights_manifest_sha256": "baafd6b9cb4a431152dd6db6054ef571d313a8ee1b8310352aedc41f2ade409f",
+    "source_sha256": {
+      "api.py": "92b5d7263c8273235dcdc8e37533715fe0cf8a95b6b3ce6b84ea74b772eaa063",
+      "inference.py": "29c9772d622a4e24d526fe36c93fe067a7e2f4d13b9a70c27e82e3f212851bbd",
+      "explanation.py": "941f6cc8666949c6eb159d066ebfa96ec6dea8fe5c304799870a9024dc1a1c3d",
+      "db_service.py": "086bfdb6360da5d70684e08db9b61debe7f2c45ba2e1f6e444b09b7a98275904",
+      "gallery_client.py": "83c05ab9014c9808d25303fcb099d2ba606e69870e6df5be0f032727092456b9",
+      "tests/qualify_runtime.py": "371b487e25d45288018d04dce6b33c3e003bab52eb35777018a3d9000f8e310b"
+    }
+  },
+  "smoke_wall_seconds": 17.6724034040235,
+  "scope": "Build with existing dependency cache and builtin code runtime; not cold-cache build, independent model quality, or plate coverage"
+}

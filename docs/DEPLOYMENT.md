@@ -9,7 +9,7 @@
 
 | Переменная | По умолчанию | Назначение |
 |---|---|---|
-| `FALCON_IMAGE` | `falcon-chel:final-20260928` | Локально подготовленный образ |
+| `FALCON_IMAGE` | `falcon-chel:final-20260928` | Локально подготовленный образ; для Release задайте `falcon-chel:public-1bf26a1` |
 | `FALCON_PORT` | `8799` | Порт frontend, bind только 127.0.0.1 |
 | `FALCON_DATA_DIR` | `./data` | Каталог с разрешённым вам dataset.zip |
 | `FALCON_OUTPUT` | `/results` | Связанные с этой моделью результаты внутри контейнера |
@@ -21,8 +21,13 @@
 ## Первый запуск
 
 1. Получите файлы по [контракту](REPRODUCIBILITY.md). Сам clone весов не содержит.
-2. С сетью соберите: `docker build -t falcon-chel:final-20260928 .`.
-3. Запустите `sh start_offline.sh`: Compose без pull/build ожидает healthy.
+2. Для готовой среды Linux x86-64 скачайте `falcon-chel-public-cpu-v1.tar.gz`
+   из Release и проверьте его SHA256. Задайте
+   `export FALCON_IMAGE=falcon-chel:public-1bf26a1`.
+3. Запустите `sh start_offline.sh /path/to/falcon-chel-public-cpu-v1.tar.gz`:
+   скрипт загрузит образ при его отсутствии; Compose без pull/build ожидает healthy.
+   Сохраняйте `FALCON_IMAGE` для всех следующих команд. Альтернатива — сборка
+   `docker build -t falcon-chel:local .` и `export FALCON_IMAGE=falcon-chel:local`.
 4. Проверьте `/health` и `/docs`. Проверьте реальный поиск на своих данных.
 
 ```bash
