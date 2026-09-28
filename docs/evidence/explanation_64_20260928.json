@@ -1,0 +1,269 @@
+{
+  "evidence": "VERIFIED-LOCAL frozen 64-query explanation-ranking utility extension",
+  "cohort": {
+    "rule": "exclude old8; rank remaining V2val by sha256(seed:extension:image_id); take64",
+    "seed": 20260929,
+    "sha256": "5ded418994c73c95903208284f0968698b0ac09d0fe1b70b2f3f5e45eebee7df",
+    "queries": 64,
+    "known": 48,
+    "unknown": 16,
+    "old8_overlap": 0,
+    "all_queries_retained": true
+  },
+  "protocol": {
+    "grid": "4x4",
+    "ks": [
+      1,
+      2,
+      4
+    ],
+    "random_controls_per_block": 8,
+    "control_seed": 20260928,
+    "directions": [
+      "gray_to_gaussian_blur",
+      "gaussian_blur_to_gray"
+    ],
+    "primary": "absolute full-gallery target-vs-strongest-competitor margin impact",
+    "same_batch": "2 originals + selected + RMS baseline + 8 random = 12",
+    "target": "original frozen-v5 top1; competitor reselected after every intervention",
+    "frozen_admission_threshold": 0.3633712828159332
+  },
+  "random_control": {
+    "overall": {
+      "mean": 0.05464945975068476,
+      "CI95": [
+        0.04235844575999174,
+        0.0682860224580385
+      ],
+      "positive": 60,
+      "queries": 64
+    },
+    "by_direction": {
+      "gray": {
+        "mean": 0.050999054494436445,
+        "CI95": [
+          0.038879473987371765,
+          0.06510821022213106
+        ],
+        "positive": 60,
+        "queries": 64
+      },
+      "gaussian_blur": {
+        "mean": 0.05829986500693307,
+        "CI95": [
+          0.04490032219320783,
+          0.07248735770216745
+        ],
+        "positive": 60,
+        "queries": 64
+      }
+    }
+  },
+  "rms_control": {
+    "overall": {
+      "mean": 0.022940782591793687,
+      "CI95": [
+        0.015424719256261682,
+        0.031230283947539125
+      ],
+      "positive": 51,
+      "queries": 64
+    },
+    "by_direction": {
+      "gray": {
+        "mean": 0.021369180921865148,
+        "CI95": [
+          0.014561724045949557,
+          0.028344201173328334
+        ],
+        "positive": 50,
+        "queries": 64
+      },
+      "gaussian_blur": {
+        "mean": 0.024512384261722225,
+        "CI95": [
+          0.01336583612746167,
+          0.0364600347167508
+        ],
+        "positive": 46,
+        "queries": 64
+      }
+    }
+  },
+  "groups": {
+    "known_correct": {
+      "queries": 42,
+      "sufficient_for_group_CI": true,
+      "selected_minus_random_mean": 0.04754070530412403,
+      "selected_minus_rms_mean": 0.02523494596907837,
+      "random_CI95": [
+        0.033969342664037505,
+        0.06269374870470726
+      ],
+      "rms_CI95": [
+        0.016864610146816384,
+        0.03394996320772377
+      ],
+      "claim": "reported; not a primary gate"
+    },
+    "known_wrong": {
+      "queries": 6,
+      "sufficient_for_group_CI": false,
+      "selected_minus_random_mean": 0.08822009869747467,
+      "selected_minus_rms_mean": 0.039056075410748785,
+      "random_CI95": null,
+      "rms_CI95": null,
+      "claim": "descriptive/inconclusive"
+    },
+    "unknown": {
+      "queries": 16,
+      "sufficient_for_group_CI": true,
+      "selected_minus_random_mean": 0.06072095056786048,
+      "selected_minus_rms_mean": 0.010875368919313223,
+      "random_CI95": [
+        0.04578192190693472,
+        0.07558855389913084
+      ],
+      "rms_CI95": [
+        -0.005479842964835396,
+        0.02669707820785983
+      ],
+      "claim": "reported; not a primary gate"
+    },
+    "accepted": {
+      "queries": 55,
+      "sufficient_for_group_CI": true,
+      "selected_minus_random_mean": 0.05160865729762723,
+      "selected_minus_rms_mean": 0.023614868609194813,
+      "random_CI95": [
+        0.037352604122774434,
+        0.06744140824723144
+      ],
+      "rms_CI95": [
+        0.015181185748034247,
+        0.03241654162340941
+      ],
+      "claim": "reported; not a primary gate"
+    },
+    "refused": {
+      "queries": 9,
+      "sufficient_for_group_CI": true,
+      "selected_minus_random_mean": 0.07323214140825862,
+      "selected_minus_rms_mean": 0.01882136804100907,
+      "random_CI95": [
+        0.0511402022640777,
+        0.09563206135568801
+      ],
+      "rms_CI95": [
+        0.003429801030875436,
+        0.03441434333646895
+      ],
+      "claim": "reported; not a primary gate"
+    }
+  },
+  "failure_inventory": {
+    "queries_nonpositive_vs_random": 4,
+    "queries_nonpositive_vs_rms": 13,
+    "selected_blocks_changed_winner": 171,
+    "selected_blocks_strengthened_target_margin": 77,
+    "selected_blocks_weakened_or_equal_target_margin": 307,
+    "blocks": 384
+  },
+  "checks": {
+    "random_gate": true,
+    "random_CI95": [
+      0.04235844575999174,
+      0.0682860224580385
+    ],
+    "random_positive_queries": 60,
+    "rms_gate": true,
+    "rms_CI95": [
+      0.015424719256261682,
+      0.031230283947539125
+    ],
+    "rms_direction_CI95": {
+      "gray": [
+        0.014464286658385188,
+        0.028061208034695303
+      ],
+      "gaussian_blur": [
+        0.013586809962047797,
+        0.036184371812769345
+      ]
+    },
+    "primary_gate": true,
+    "all_64_queries": true,
+    "maximum_original_score_noise": 9.053671602698987e-08,
+    "effect_signal_boundary": 1e-06,
+    "duplicate_tolerance": 0.0001,
+    "finite": true
+  },
+  "decision": "keep bounded ranking-utility evidence",
+  "runtime": {
+    "seconds": 803.4074434018694,
+    "cpu_threads": 4
+  },
+  "limitations": [
+    "Perturbation decision-relevance only; no identity causality or semantic-part claim",
+    "Gray and blur are artificial interventions",
+    "No confidence, model-quality, operator-time or human-benefit claim",
+    "Correct/wrong/unknown and accepted/refused groups are descriptive, not selection gates",
+    "Automatic-mask completeness remains unverified"
+  ],
+  "source_binding": {
+    "weights_manifest": "baafd6b9cb4a431152dd6db6054ef571d313a8ee1b8310352aedc41f2ade409f",
+    "source": "3ee1ba225c4fa51e822e6b006e6998d22e69b3f411554e05a265b7e642cf325f",
+    "base_helpers_source": "56ef0032502df8696cf973139864c63898a1eb4d1e4848bcae1d04570775e1c5",
+    "independent_verifier_r3": "6a97fa6aa30a0109b96771c0384c1c4c6fcded12cf550ca4a8a9377c3b383c9d"
+  },
+  "gallery_images": 632,
+  "cohort_is_independent_quality_holdout": false,
+  "same_camera_exclusion": false,
+  "independent_arithmetic_verification": {
+    "status": "PASS",
+    "method": "independent recomputation from raw signed per-query deltas",
+    "queries": 64,
+    "blocks": 384,
+    "random_raw_deltas": 3072,
+    "random_mean": 0.05464945975068476,
+    "random_positive_queries": 60,
+    "rms_mean": 0.022940782591793687,
+    "rms_positive_queries": 51,
+    "reconstructed_checks": {
+      "random_gate": true,
+      "rms_gate": true,
+      "primary_gate": true,
+      "rms_direction_CI95": {
+        "gray": [
+          0.014464286658385188,
+          0.028061208034695303
+        ],
+        "gaussian_blur": [
+          0.013586809962047797,
+          0.036184371812769345
+        ]
+      },
+      "random_direction_means": {
+        "gray": 0.050999054494436445,
+        "gaussian_blur": 0.05829986500693307
+      }
+    },
+    "maximum_original_score_noise": 9.053671602698987e-08,
+    "numeric_tolerance": 1e-12,
+    "artifact_sha256": {
+      "report.json": "100a47bbaff715aeef8f857394ba79bbf56fabf98f9df8f49e1d02594ee9745c",
+      "per_query.json": "c52dc1af6e6bac2ba8f9e5c6188f5f21ce1a9e3720c34cc8f37e760e242da791"
+    }
+  },
+  "verifier_controls": {
+    "status": "PASS",
+    "controls": [
+      "known_good",
+      "nan",
+      "corrupted_mean",
+      "corrupted_random_delta",
+      "primary_boolean"
+    ],
+    "source_sha256": "6a97fa6aa30a0109b96771c0384c1c4c6fcded12cf550ca4a8a9377c3b383c9d"
+  }
+}
