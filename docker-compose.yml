@@ -1,0 +1,84 @@
+name: falcon-v5
+services:
+  database:
+    image: ${FALCON_IMAGE:-falcon-chel:final-20260928}
+    pull_policy: never
+    command: [python, /db/db_service.py]
+    environment:
+      FALCON_DB: /storage/gallery.sqlite
+    volumes:
+      - ./db_service.py:/db/db_service.py:ro
+      - gallery:/storage
+    networks: [internal]
+    mem_limit: 256m
+    cpus: 0.5
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8002/health', timeout=5).read()"]
+      interval: 10s
+      timeout: 8s
+      retries: 3
+  backend:
+    image: ${FALCON_IMAGE:-falcon-chel:final-20260928}
+    pull_policy: never
+    environment:
+      FALCON_WEIGHTS: /app/weights
+      FALCON_OUTPUT: ${FALCON_OUTPUT:-/results}
+      FALCON_ARCHIVE: /data/dataset.zip
+      FALCON_DB_URL: http://database:8002
+    volumes:
+      - ./outputs:/results:ro
+      - ${FALCON_DATA_DIR:-./data}:/data:ro
+      - ./api.py:/app/api.py:ro
+      - ./gallery_client.py:/app/gallery_client.py:ro
+      - ./inference.py:/app/inference.py:ro
+      - ./explanation.py:/app/explanation.py:ro
+      - ./falcon:/app/falcon:ro
+      - ./weights:/app/weights:ro
+    networks: [internal]
+    depends_on:
+      database:
+        condition: service_healthy
+    mem_limit: 6g
+    cpus: 2
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5).read()"]
+      interval: 15s
+      timeout: 10s
+      retries: 4
+      start_period: 90s
+  frontend:
+    image: ${FALCON_IMAGE:-falcon-chel:final-20260928}
+    pull_policy: never
+    command: [python, /web/frontend.py]
+    environment:
+      FALCON_BACKEND: http://backend:8000
+    volumes:
+      - ./frontend.py:/web/frontend.py:ro
+      - ./index.html:/web/index.html:ro
+      - ./docs.html:/web/docs.html:ro
+      - ./explanation_ui.js:/web/explanation_ui.js:ro
+      - ./static:/web/static:ro
+    ports:
+      - "127.0.0.1:${FALCON_PORT:-8799}:8080"
+    networks: [internal, edge]
+    depends_on:
+      backend:
+        condition: service_healthy
+    mem_limit: 256m
+    cpus: 0.5
+    read_only: true
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/frontend-health', timeout=5).read()"]
+      interval: 15s
+      timeout: 10s
+      retries: 3
+networks:
+  internal:
+    internal: true
+  edge:
+    driver: bridge
+volumes:
+  gallery:

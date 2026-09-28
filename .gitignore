@@ -1,0 +1,26 @@
+# Private competition inputs and generated artifacts
+data/
+weights/
+outputs/
+replay/
+results/
+*.npy
+*.npz
+*.onnx
+*.safetensors
+*.zip
+*.tar
+*.tar.gz
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python and editor state
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
