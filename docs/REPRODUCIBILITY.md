@@ -39,8 +39,8 @@ curl -fL -o falcon-chel-kissme1024-weights-v1.tar.gz \
   https://github.com/sweetlhare/falcon-chel-lct-2026/releases/download/v1.0.0/falcon-chel-kissme1024-weights-v1.tar.gz
 printf '%s  %s\n' \
   ee0828478e26680b6becd8087de629cca02bd0cd2b59494aa7db05d3cb4d971d \
-  falcon-chel-kissme1024-weights-v1.tar.gz | sha256sum -c -
-tar -xzf falcon-chel-kissme1024-weights-v1.tar.gz
+  falcon-chel-kissme1024-weights-v1.tar.gz | sha256sum -c - && \
+  tar -xzf falcon-chel-kissme1024-weights-v1.tar.gz
 ```
 
 На macOS вместо `sha256sum` используйте `shasum -a 256`. Для автономной
@@ -100,7 +100,12 @@ training/split набора в публичном checkout нет.
   совпали побитово в проверенном offline-окружении.
 - Свежий encode восьми изображений отличается от исследовательского пути
   не более 2.468e-6 по вектору.
-- Полный цикл encoder→обучение всех ветвей→выходы заново не повторялся.
+- Все четыре обучаемые части повторены из публичного кода на сохранённых
+  признаках. Строгий gate **FAIL**: дополнительный сериализованный флаг в v1,
+  отклонение PCA-компонент до 4.396e-6 и итогового вектора до 3.155e-6 при
+  допуске 1e-6. На calibration/validation нет изменений решений по порогу,
+  validation-порядок сохранён. [Подробности](TRAINING.md).
+- Полный цикл с повторным извлечением всех train-признаков encoder не проверялся.
 - Выходной валидатор проверен на целых и намеренно повреждённых данных.
 - Результаты и hashes не публикуются как доказательство скрытого теста.
 
