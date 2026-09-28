@@ -4,7 +4,7 @@
 
 [Открыть работающий прототип](http://5.144.99.200:8800/) · [Обучение](docs/TRAINING.md) ·
 [Аудит требований ТЗ](docs/REQUIREMENTS.md) ·
-[Презентация PDF](https://github.com/sweetlhare/falcon-chel-lct-2026/releases/download/v1.0.0/Falcon_CHEL_LCT_template_v15.pdf)
+[Презентация PDF](https://github.com/sweetlhare/falcon-chel-lct-2026/releases/download/v1.0.0/Falcon_CHEL_LCT_template_v16.pdf)
 
 Поиск одного автомобиля на снимках разных камер: изображение и рамка автомобиля
 превращаются в вектор, галерея ранжируется по cosine, а оператор получает
