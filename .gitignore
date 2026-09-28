@@ -1,5 +1,7 @@
 # Private competition inputs and generated artifacts
 data/
+training/
+runs/
 weights/
 outputs/
 replay/
