@@ -3,7 +3,8 @@
 **ЛЦТ 2026 · задача Фалькон Тех · Built with DINOv3**
 
 [Открыть работающий прототип](http://5.144.99.200:8800/) · [Обучение](docs/TRAINING.md) ·
-[Аудит требований ТЗ](docs/REQUIREMENTS.md)
+[Аудит требований ТЗ](docs/REQUIREMENTS.md) ·
+[Презентация PDF](https://github.com/sweetlhare/falcon-chel-lct-2026/releases/download/v1.0.0/Falcon_CHEL_LCT_template_v13.pdf)
 
 Поиск одного автомобиля на снимках разных камер: изображение и рамка автомобиля
 превращаются в вектор, галерея ранжируется по cosine, а оператор получает
@@ -121,6 +122,17 @@ node --check explanation_ui.js
 node tests/check_operator_evidence.cjs
 PYTHONPATH=. python -m unittest discover -s tests -p 'test_*.py' -v
 ```
+
+После распаковки весов можно проверить весь сценарий без конкурсных данных:
+
+```bash
+python tests/qualify_empty.py --weights weights --report /tmp/falcon-own-gallery-check.json
+```
+
+Команда создаёт два синтетических изображения и временную галерею, проверяет
+поиск, объяснение и перезапуск. Отчёт должен быть новым файлом. Проверка
+запускает собственные API/DB только на localhost и удаляет временную галерею.
+Она требует зависимостей проекта и не измеряет качество поиска автомобилей.
 
 Для Python-тестов требуется окружение с зависимостями проекта. На опубликованном
 коде прошли 43 Python-теста и 10 JS-сценариев; полная модель им не требуется.
