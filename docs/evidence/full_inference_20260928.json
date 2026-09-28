@@ -1,0 +1,56 @@
+{
+  "evidence_level": "VERIFIED-LOCAL",
+  "date": "2026-09-28",
+  "scope": "Full automatic inference reproduction in the same prepared CPU runtime, not quality, plate coverage or training replay",
+  "source_commit": "22fbe3e9a6d3284eb774769bca23c9509fe2360a",
+  "source_archive_sha256": "0e7b7d9e71ebab45772bd4bee0c93eb20d0a3161465057e78c3ef29697d22d23",
+  "weights_manifest_sha256": "baafd6b9cb4a431152dd6db6054ef571d313a8ee1b8310352aedc41f2ade409f",
+  "inference_sha256": "29c9772d622a4e24d526fe36c93fe067a7e2f4d13b9a70c27e82e3f212851bbd",
+  "validator_sha256": "761dfdcc0a0c085a23ce10865a70fd9c6a8b51785102f5a13780f563f7127157",
+  "comparator_sha256": "b1dddea25dbfb0be6cfe6e0a6736eae1dad1b1441b95cc6d012a40330af5537e",
+  "limits": {
+    "cpus": 6,
+    "memory_gib": 6,
+    "timeout_seconds": 900,
+    "network": "none",
+    "gpu": false,
+    "host_ports": false
+  },
+  "inference_seconds": 349.8135543758981,
+  "whole_job_seconds": 350.5698312369641,
+  "automatic_masks": true,
+  "stored_redactions_supplied": false,
+  "comparison": {
+    "passed": true,
+    "queries": 1110,
+    "gallery": 750,
+    "rows": 1860,
+    "source_manifest_equal": true,
+    "model_manifest_equal": true,
+    "row_order_equal": true,
+    "redactions_exact_equal": true,
+    "automatic_masks": true,
+    "fallback_redactions": 632,
+    "top10_exact_equal": true,
+    "candidate_identity_order_equal": true,
+    "candidate_rows": 4424,
+    "refused_queries": 67,
+    "embedding_max_abs_error": 0.0,
+    "embedding_tolerance": 0.0001,
+    "full_cosine_max_abs_error": 0.0,
+    "candidate_score_max_abs_error": 0.0,
+    "score_tolerance": 1e-06,
+    "pooling_max_abs_error_diagnostic": 0.0,
+    "controls": {
+      "equal_fixture_passed": true,
+      "known_corruptions_rejected": [
+        "candidate score tolerance",
+        "submission equality",
+        "embedding tolerance",
+        "candidate identity/order"
+      ]
+    },
+    "scope": "Full automatic inference reproduction; not quality, official score or plate coverage"
+  },
+  "public_validator_exit_code": 0
+}
